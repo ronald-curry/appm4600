@@ -1,4 +1,4 @@
-#APPM 4600 Repo
+# APPM 4600 Repo
 This repository contains all python code (labs and hw) for APPM 4600. 
 Contains the 4600 folder
 contains the hw and lab folder
