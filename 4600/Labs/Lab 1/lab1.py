@@ -28,8 +28,8 @@ driver()
 def matrixMult(A,x):
 	b=[]
 	for i in range(len(A)):
-		b.append(dotProduct(A[i],x,len(x)))
+		b.append(dotProduct(A[i],x,len(x)))#adds each element of the dot product
 	return np.array(b)
 A=np.array([[1,2],[3,4]])
 x=np.array([5,7])
-print(matrixMult(A,x))
+print(matrixMult(A,x)) #prints results
