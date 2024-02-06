@@ -29,10 +29,6 @@ f1 = lambda x: x-(x**5-7)/(5*x**4)
 fixed point is alpha1 = 1.4987....
 '''
 
-f2 = lambda x: x*(1+(x**5-7)/(x**2))**3
-''' 
-fixed point is alpha2 = 3.09... 
-'''
 
 Nmax = 400
 tol = 1e-10
@@ -44,9 +40,3 @@ print('the approximate fixed point is:',xstar)
 print('f1(xstar):',f1(xstar))
 print('Error message reads:',ier)
     
-''' test f2 '''
-x0 = 1
-#[xstar,ier] = fixedpt(f2,x0,tol,Nmax)
-#print('the approximate fixed point is:',xstar)
-#print('f2(xstar):',f2(xstar))
-#print('Error message reads:',ier)
