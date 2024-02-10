@@ -44,4 +44,5 @@ x0 = 1
 print('the approximate fixed point is:',xstar)
 print('f1(xstar):',f1(xstar))
 print('Error message reads:',ier)
+print('Iterations', x)
     
