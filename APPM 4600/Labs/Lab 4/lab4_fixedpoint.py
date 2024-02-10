@@ -6,7 +6,14 @@ def fixedpt(f,x0,tol,Nmax):
 
     ''' x0 = initial guess''' 
     ''' Nmax = max number of iterations'''
-    ''' tol = stopping tolerance'''
+    ''' tol = stopping tolerance''' 
+    
+    
+    ''' Outputs:
+    xstar: final guess of fixed point
+    ier: error message
+    x: array of all guesses
+    '''
     x = np.zeros((Nmax+1,1))
     count = 0
     x[0]=x0
@@ -28,8 +35,8 @@ def fixedpt(f,x0,tol,Nmax):
 # use routines 
 f1 = lambda x: x-(x**5-7)/(5*x**4)
 
-Nmax = 50
-tol = 1e-8
+Nmax = 11
+tol = 1e-15
 
 ''' test f1 '''
 x0 = 1
