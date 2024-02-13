@@ -1,6 +1,19 @@
 # import libraries
 import numpy as np
     
+
+def delta_2(f,slow,Nmax,tol):
+    count = 0
+    fast=np.zeros((Nmax,1))
+    while (count < Nmax):
+        fast[count]=slow[count]-(slow[count+1]-slow[count])**2/(slow[count+2]-2*slow[count+1]+slow[count])
+        count=count+1
+        if slow[count+2]==0:
+            break
+        if (f(fast[count])-fast[count]<tol):
+            break
+    return fast
+
 # define routines
 def fixedpt(f,x0,tol,Nmax):
 
@@ -33,16 +46,19 @@ def fixedpt(f,x0,tol,Nmax):
     
 
 # use routines 
-f1 = lambda x: x-(x**5-7)/(5*x**4)
+f1 = lambda x: (10/(x+4))**0.5
 
-Nmax = 11
-tol = 1e-15
+Nmax = 20
+tol = 1e-5
 
 ''' test f1 '''
-x0 = 1
+x0 = 1.5
 [xstar,ier,x] = fixedpt(f1,x0,tol,Nmax)
+aitkens=delta_2(f1,x,Nmax,tol)
+
 print('the approximate fixed point is:',xstar)
 print('f1(xstar):',f1(xstar))
 print('Error message reads:',ier)
-print('Iterations', x)
+print('Iterations',x)
+print('Aitkens: ',aitkens)
     
