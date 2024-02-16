@@ -28,7 +28,7 @@ def fixedpt(f,x0,tol,Nmax):
         x1 = f(x0)
         count = count +1
         x[count]=x1
-        if (abs(x1-x0) <tol):
+        if (abs(x[count]-f(x[count])) <tol):
             xstar = x1
             ier = 0
             return [xstar,ier,x,count]
@@ -108,20 +108,20 @@ f = lambda x: 1
 a = 1
 b = 4
 
-Nmax = 130
-tol = 1e-16
+Nmax = 30
+tol = 1e-10
 
 [astar,ier,count] = bisection(f,a,b,tol,Nmax)
 #print('the approximate root is',astar)
 #print('the error message reads:',ier)
 #print("number of iterations",count)
 
-f2 = lambda x: 12/(x+1)
-x0 = 2.8
+f2 = lambda x: -np.sin(2*x)+5*x/4-3/4
+x0 = 4.6
 [xstar,ier,x,count] = fixedpt(f2,x0,tol,Nmax)
 
 print('the approximate fixed point is:',xstar)
 print('f1(xstar):',f2(xstar))
 print('Error message reads:',ier)
 print("Number of iterations", count)
-#print('Iterations',x)
+print('Iterations',x)
