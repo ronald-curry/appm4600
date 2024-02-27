@@ -17,6 +17,9 @@ def driver():
     plt.plot(np.arange(its),np.log10(err[0:its]));
     plt.show();
     t = time.time()
+    temp=np.array(xlist)
+    plt.scatter(temp[:,0],temp[:,1])
+    plt.show()
     for j in range(20):
         [xstar,xlist,ier,its] = LazyNewton(x0,tol,Nmax);
     elapsed = time.time()-t
@@ -24,10 +27,9 @@ def driver():
     err2 = np.sum((xlist-xstar)**2,axis=1);
     plt.plot(np.arange(its),np.log10(err2[0:its]));
     plt.show();
-    
-    plt.scatter(xlist[0],xlist[1])
-    plt.show();
-    
+    temp=np.array(xlist)
+    plt.scatter(temp[:,0],temp[:,1])
+    plt.show()
 def evalF(x):
     F = np.zeros(2)
     F[0] = 4*x[0]**2+x[1]**2-4
