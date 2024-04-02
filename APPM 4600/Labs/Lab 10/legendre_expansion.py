@@ -16,13 +16,13 @@ def driver():
     w =  lambda x: 1
     w2 = lambda x: 1/np.sqrt(1-x**2)
 # order of approximation
-    n = 3
+    n = 2
 
 #  Number of points you want to sample in [a,b]
     N = 1000
     xeval = np.linspace(a,b,N+1)
+    
     pval = np.zeros(N+1)
-
     for kk in range(N+1):
       pval[kk] = eval_legendre_expansion(f,a,b,w,n,xeval[kk])
 
@@ -88,7 +88,7 @@ def eval_cheby_expansion(f,a,b,w,n,x):
 
 #   This subroutine evaluates the Chebyshev expansion
 
-#  Evaluate all the Legendre polynomials at x that are needed
+#  Evaluate all the cheby polynomials at x that are needed
 # by calling your code from prelab
   p = eval_cheby(n, x)
   # initialize the sum to 0
