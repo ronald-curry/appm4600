@@ -2,7 +2,7 @@ import numpy as np
 import numpy.linalg as la
 import matplotlib.pyplot as plt
 import math
-from scipy.integrate import quad
+from scipy.integrate import quad as quad
 
 def driver():
 
@@ -49,24 +49,32 @@ def eval_legendre_expansion(f,a,b,w,n,x):
 
 #  Evaluate all the Legendre polynomials at x that are needed
 # by calling your code from prelab
-  p = ...
+  p = eval_legendre(n, x)
   # initialize the sum to 0
   pval = 0.0
   for j in range(0,n+1):
       # make a function handle for evaluating phi_j(x)
-      phi_j = lambda x: ...
-      # make a function handle for evaluating phi_j^2(x)*w(x)
-      phi_j_sq = lambda x: ...
-      # use the quad function from scipy to evaluate normalizations
-      norm_fac,err = ...
-      # make a function handle for phi_j(x)*f(x)*w(x)/norm_fac
-      func_j = lambda x: ...
+      phi_j = lambda x: eval_legendre(j, x)[j]
+      func1 = lambda x: phi_j(x)*f(x)*w(x)
+      func2 =lambda x: phi_j(x)**2*w(x)
       # use the quad function from scipy to evaluate coeffs
-      aj,err = ...
+      funcj,err=quad(func1,a,b)
+      norm,err=quad(func2,a,b)
+      aj=funcj/norm
       # accumulate into pval
       pval = pval+aj*p[j]
 
   return pval
+
+def eval_legendre(N,x):
+    phi=np.zeros(N+1)
+    phi[0]=1;
+    if N>0:
+        phi[1]=x;
+    if N>1:
+        for i in range(2,N+1):
+            phi[i]=1/(i)*((2*(i-1)+1)*x*phi[i-1]-i*phi[i-2])
+    return phi
 
 if __name__ == '__main__':
   # run the drivers only if this is called from the command line
