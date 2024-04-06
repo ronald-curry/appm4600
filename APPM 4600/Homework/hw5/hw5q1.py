@@ -18,19 +18,19 @@ def weights(n,x):
                 p=p*(x[j]-x[i])
         w[j]=1/p
     return w
-def p(x,fx,w,n,z):
+def p(x,f,w,n,z):
     top=0
     bottom=0
     err=-5
     for j in range(n+1):
         if z!=x[j]:
-            top=top+w[j]/(z-x[j])*fx[j]
+            top=top+w[j]/(z-x[j])*f(x[j])
             bottom=bottom+w[j]/(z-x[j])
         if z==x[j]:
             err=j
     pz=top/bottom
     if err >-4:
-        pz=fx[err]
+        pz=f(x[err])
     return pz
 
 
@@ -38,14 +38,13 @@ f= lambda x: 1/(1+(16*x)**2)
 n=5
 h=2/n
 x=get_nodes(n, h)
-fx=f(x)
-plt.plot(x,fx,'o')
+plt.plot(x,f(x),'o')
 w=weights(n, x)
 points=np.linspace(-1, 1,1001)
 data=f(points)
 poly=np.zeros(1001)
 for i in range(1001):
-    poly[i]=p(x,fx,w,n,data[i])
+    poly[i]=p(x,f,w,n,data[i])
 plt.plot(points,data)
-plt.plot(points,poly)
+plt.plot(points,poly,'o')
 plt.show()
