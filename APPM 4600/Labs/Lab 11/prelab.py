@@ -15,5 +15,7 @@ def trap(f,n,a,b):
     total=total/(n-1)
     return total
     
+
+
 trapz=trap(f,n,a,b)
         
